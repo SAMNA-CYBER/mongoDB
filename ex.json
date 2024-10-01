@@ -1,0 +1,50 @@
+
+db.employee.insertMany(
+[
+  {
+    "name": "John Doe",
+    "department": "Sales",
+    "salary": 50000,
+    "loginCount": 12,
+    "isActive": true,
+    "designation": "Manager",
+    "dateOfJoining": "2019-03-15"
+  },
+  {
+    "name": "Jane Smith",
+    "department": "HR",
+    "salary": 60000,
+    "loginCount": 5,
+    "isActive": true,
+    "designation": "HR Executive",
+    "dateOfJoining": "2020-07-12"
+  },
+  {
+    "name": "Sam Johnson",
+    "department": "IT",
+    "salary": 70000,
+    "loginCount": 15,
+    "isActive": false,
+    "designation": "Developer",
+    "dateOfJoining": "2018-02-10"
+  },
+  {
+    "name": "Alice Brown",
+    "department": "IT",
+    "salary": 75000,
+    "loginCount": 20,
+    "isActive": true,
+    "designation": "Senior Developer",
+    "dateOfJoining": "2017-01-22"
+  },
+  {
+    "name": "Mark Williams",
+    "department": "Sales",
+    "salary": 40000,
+    "loginCount": 8,
+    "isActive": true,
+    "designation": "Sales Executive",
+    "dateOfJoining": "2021-05-30"
+  }
+]
+)
