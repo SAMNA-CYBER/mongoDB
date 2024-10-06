@@ -48,3 +48,358 @@ db.employee.insertMany(
   }
 ]
 )
+
+
+osoft Windows [Version 10.0.22631.4169]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\samna>mongosh
+Current Mongosh Log ID: 67024a36f16945b790c73bf7
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.1
+Using MongoDB:          8.0.0
+Using Mongosh:          2.3.1
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-10-04T16:43:30.846+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> db.employees.find()
+
+test> use dbexample
+switched to db dbexample
+dbexample> db.employees.find()
+[
+  {
+    _id: ObjectId('67010985649d30a0b1c4c671'),
+    eid: 1,
+    ename: 'Rahul',
+    dept: 'Production',
+    desig: 'Developer',
+    salary: 38000,
+    yoj: 2015,
+    address: { dno: 397, street: 2, locality: 'RM Nagar', city: 'Bangalore' }
+  },
+  {
+    _id: ObjectId('67010985649d30a0b1c4c672'),
+    eid: 2,
+    ename: 'Anjali',
+    dept: 'HR',
+    desig: 'HR Manager',
+    salary: 45000,
+    yoj: 2017,
+    address: { dno: 123, street: 3, locality: 'MG Road', city: 'Mumbai' }
+  },
+  {
+    _id: ObjectId('67010985649d30a0b1c4c673'),
+    eid: 3,
+    ename: 'Vikram',
+    dept: 'Production',
+    desig: 'Developer',
+    salary: 40000,
+    yoj: 2018,
+    address: { dno: 501, street: 5, locality: 'Jayanagar', city: 'Bangalore' }
+  },
+  {
+    _id: ObjectId('67010985649d30a0b1c4c674'),
+    eid: 4,
+    ename: 'Neha',
+    dept: 'Sales',
+    desig: 'Sales Executive',
+    salary: 28000,
+    yoj: 2016,
+    address: { dno: 210, street: 1, locality: 'Kormangala', city: 'Bangalore' }
+  },
+  {
+    _id: ObjectId('67010985649d30a0b1c4c675'),
+    eid: 5,
+    ename: 'Rajesh',
+    dept: 'Finance',
+    desig: 'Accountant',
+    salary: 42000,
+    yoj: 2014,
+    address: { dno: 178, street: 8, locality: 'Bandra', city: 'Mumbai' }
+  },
+  {
+    _id: ObjectId('67010985649d30a0b1c4c676'),
+    eid: 6,
+    ename: 'Suman',
+    dept: 'Production',
+    desig: 'Developer',
+    salary: 37000,
+    yoj: 2019,
+    address: { dno: 564, street: 6, locality: 'Indiranagar', city: 'Bangalore' }
+  },
+  {
+    _id: ObjectId('67010985649d30a0b1c4c677'),
+    eid: 7,
+    ename: 'Arjun',
+    dept: 'Marketing',
+    desig: 'Marketing Manager',
+    salary: 50000,
+    yoj: 2012,
+    address: { dno: 301, street: 4, locality: 'Viman Nagar', city: 'Pune' }
+  },
+  {
+    _id: ObjectId('67010985649d30a0b1c4c678'),
+    eid: 8,
+    ename: 'Divya',
+    dept: 'HR',
+    desig: 'HR Executive',
+    salary: 32000,
+    yoj: 2018,
+    address: { dno: 432, street: 2, locality: 'Whitefield', city: 'Bangalore' }
+  },
+  {
+    _id: ObjectId('67010985649d30a0b1c4c679'),
+    eid: 9,
+    ename: 'Sameer',
+    dept: 'Finance',
+    desig: 'Financial Analyst',
+    salary: 48000,
+    yoj: 2015,
+    address: { dno: 698, street: 5, locality: 'Powai', city: 'Mumbai' }
+  },
+  {
+    _id: ObjectId('67010985649d30a0b1c4c67a'),
+    eid: 10,
+    ename: 'Priya',
+    dept: 'Sales',
+    desig: 'Sales Manager',
+    salary: 53000,
+    yoj: 2011,
+    address: { dno: 120, street: 1, locality: 'JP Nagar', city: 'Bangalore' }
+  }
+]
+dbexample> db.employees.find({} , {salary : {$gte: 50000 ,$lte : 70000}})
+MongoServerError[Location16410]: FieldPath field names may not start with '$'. Consider using $getField or $setField.
+dbexample> db.employees.find({salary : {$gte: 50000 ,$lte : 70000}})
+[
+  {
+    _id: ObjectId('67010985649d30a0b1c4c677'),
+    eid: 7,
+    ename: 'Arjun',
+    dept: 'Marketing',
+    desig: 'Marketing Manager',
+    salary: 50000,
+    yoj: 2012,
+    address: { dno: 301, street: 4, locality: 'Viman Nagar', city: 'Pune' }
+  },
+  {
+    _id: ObjectId('67010985649d30a0b1c4c67a'),
+    eid: 10,
+    ename: 'Priya',
+    dept: 'Sales',
+    desig: 'Sales Manager',
+    salary: 53000,
+    yoj: 2011,
+    address: { dno: 120, street: 1, locality: 'JP Nagar', city: 'Bangalore' }
+  }
+]
+dbexample> db.employees.find({ename : 1 , _id : 0},{salary : {$gte: 50000 ,$lte : 70000}})
+MongoServerError[Location16410]: FieldPath field names may not start with '$'. Consider using $getField or $setField.
+dbexample> db.employees.find({salary : {$gte: 50000 ,$lte : 70000}}, {ename : 1, _id : 0})
+[ { ename: 'Arjun' }, { ename: 'Priya' } ]
+dbexample> db.employees.find({desig : "Developer"} , {ename : 1 , _id : 0})
+[ { ename: 'Rahul' }, { ename: 'Vikram' }, { ename: 'Suman' } ]
+dbexample> db.employees.find({ename : "Rahul"} , {salary : 1 , _id : 0})
+[ { salary: 38000 } ]
+dbexample> db.employees.find({ename : "rahul"} , {address.city : 1})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:46)
+
+> 1 | db.employees.find({ename : "rahul"} , {address.city : 1})
+    |                                               ^
+  2 |
+
+dbexample> db.employees.find({ename : "rahul"} , {"address.city" : 1})
+
+dbexample> db.employees.find({ename : "Rahul"} , {"address.city" : 1})
+[
+  {
+    _id: ObjectId('67010985649d30a0b1c4c671'),
+    address: { city: 'Bangalore' }
+  }
+]
+dbexample> db.employees.updateMany({desig : "Developer"} , {$inc : {salary : 5000}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+dbexample> db.employees.findManyAndUpdate({desig : "Developer"} , {$inc : {salary : 5000}} , {returnDocument : 'after'})
+TypeError: db.employees.findManyAndUpdate is not a function
+dbexample> db.employees.findOneAndUpdate({desig : "Developer"} , {$inc : {salary : 5000}} , {returnDocument : 'after'})
+{
+  _id: ObjectId('67010985649d30a0b1c4c671'),
+  eid: 1,
+  ename: 'Rahul',
+  dept: 'Production',
+  desig: 'Developer',
+  salary: 48000,
+  yoj: 2015,
+  address: { dno: 397, street: 2, locality: 'RM Nagar', city: 'Bangalore' }
+}
+dbexample> db.employees.aggregate([
+...   { $match: { desig: "Developer" } },    // Step 1: Match documents with "Developer"
+...   { $set: { salary: { $add: ["$salary", 5000] } } },  // Step 2: Update salary field by adding 5000
+...   { $merge: { into: "employees", whenMatched: "merge" } },  // Step 3: Merge the updated documents back into the original collection
+...   { $project: { _id: 0, ename: 1, salary: 1, desig: 1 } }  // Step 4: Project the fields you want to display
+... ]);
+MongoServerError[Location40601]: $merge can only be the final stage in the pipeline
+dbexample> db.employees.aggregate([ { $match: { desig: "Developer" } }, /* Step 1: Match documents with "Developer"*/ { $set: { salary: { $add: ["$salary", 5000] } } }, /* Step 2: Update salary field by adding 5000*/  { $project: { _id: 0, ename: 1, salary: 1, desig: 1 } } /* Step 4: Project the fields you want to display*/] );
+[
+  { ename: 'Rahul', desig: 'Developer', salary: 53000 },
+  { ename: 'Vikram', desig: 'Developer', salary: 50000 },
+  { ename: 'Suman', desig: 'Developer', salary: 47000 }
+]
+dbexample> db.employees.updateOne({ename : 'Rahul'} , {age : 18})
+MongoInvalidArgumentError: Update document requires atomic operators
+dbexample> db.employees.updateOne({ename : 'Rahul'} , {$set : {age : 18}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+dbexample> db.employees.find({ename : 'Rahul'})
+[
+  {
+    _id: ObjectId('67010985649d30a0b1c4c671'),
+    eid: 1,
+    ename: 'Rahul',
+    dept: 'Production',
+    desig: 'Developer',
+    salary: 48000,
+    yoj: 2015,
+    address: { dno: 397, street: 2, locality: 'RM Nagar', city: 'Bangalore' },
+    age: 18
+  }
+]
+dbexample> db.employees.updateOne({ename : 'Rahul'} , {$unset : {yoj : ""}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+dbexample> db.employees.find({ename : 'Rahul'})
+[
+  {
+    _id: ObjectId('67010985649d30a0b1c4c671'),
+    eid: 1,
+    ename: 'Rahul',
+    dept: 'Production',
+    desig: 'Developer',
+    salary: 48000,
+    address: { dno: 397, street: 2, locality: 'RM Nagar', city: 'Bangalore' },
+    age: 18
+  }
+]
+dbexample> db.employees.updateOne({ename : 'Rahul'} , {$push : {project : [""]}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+dbexample> db.employees.find({ename : 'Rahul'})
+[
+  {
+    _id: ObjectId('67010985649d30a0b1c4c671'),
+    eid: 1,
+    ename: 'Rahul',
+    dept: 'Production',
+    desig: 'Developer',
+    salary: 48000,
+    address: { dno: 397, street: 2, locality: 'RM Nagar', city: 'Bangalore' },
+    age: 18,
+    project: [ [ '' ] ]
+  }
+]
+dbexample> db.employees.updateOne({ename : 'Rahul'} , {$push : {project : ""}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+dbexample> db.employees.find({ename : 'Rahul'})
+[
+  {
+    _id: ObjectId('67010985649d30a0b1c4c671'),
+    eid: 1,
+    ename: 'Rahul',
+    dept: 'Production',
+    desig: 'Developer',
+    salary: 48000,
+    address: { dno: 397, street: 2, locality: 'RM Nagar', city: 'Bangalore' },
+    age: 18,
+    project: [ [ '' ], '' ]
+  }
+]
+dbexample> db.employees.updateOne({ename : 'Rahul'} , {$pull : {project : [""]}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+dbexample> db.employees.find({ename : 'Rahul'})
+[
+  {
+    _id: ObjectId('67010985649d30a0b1c4c671'),
+    eid: 1,
+    ename: 'Rahul',
+    dept: 'Production',
+    desig: 'Developer',
+    salary: 48000,
+    address: { dno: 397, street: 2, locality: 'RM Nagar', city: 'Bangalore' },
+    age: 18,
+    project: [ '' ]
+  }
+]
+dbexample> db.employees.updateOne({ename : 'Rahul'} , {$pushAll : {project : {'p1' , 'p2'}}})
+Uncaught:
+SyntaxError: Unexpected token (1:72)
+
+> 1 | db.employees.updateOne({ename : 'Rahul'} , {$pushAll : {project : {'p1' , 'p2'}}})
+    |                                                                         ^
+  2 |
+
+dbexample> db.employees.updateOne({ename : 'Rahul'} , {$pushAll : {project : {$each : ['p1' ,'p2']}}})
+MongoServerError: Unknown modifier: $pushAll. Expected a valid update modifier or pipeline-style update specified as an array
+dbexample> db.employees.updateOne({ename : 'Rahul'} , {$push : {project : {$each : ['p1' ,'p2']}}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+dbexample> db.employees.find({ename : 'Rahul'})
+[
+  {
+    _id: ObjectId('67010985649d30a0b1c4c671'),
+    eid: 1,
+    ename: 'Rahul',
+    dept: 'Production',
+    desig: 'Developer',
+    salary: 48000,
+    address: { dno: 397, street: 2, locality: 'RM Nagar', city: 'Bangalore' },
+    age: 18,
+    project: [ '', 'p1', 'p2' ]
+  }
+]
+dbexample> db.employees.updateOne({ename : 'Rahul'} , {$pop : {project : ['' , 'p1' , 'p2']}})
+MongoServerError: Expected a number in: project: [ "", "p1", "p2" ]
+dbexample>
